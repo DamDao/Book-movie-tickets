@@ -39,41 +39,46 @@
                         <li>
                             exclusive
                         </li>
-                      
+
                     </ul>
                 </div>
                 <di div class="tab-area mb-30-none">
                     <div class="tab-item active">
                         <div class="owl-carousel owl-theme tab-slider">
-                            <div class="item">
-                                <div class="movie-grid">
-                                    <div class="movie-thumb c-thumb">
-                                        <a href="{{ route('detail') }}">
-                                            <img src="{{ asset('assets') }}/images/movie/movie01.jpg" alt="movie">
-                                        </a>
-                                    </div>
-                                    <div class="movie-content bg-one">
-                                        <h5 class="title m-0">
-                                            <a href="{{ route('detail') }}">alone</a>
-                                        </h5>
-                                        <ul class="movie-rating-percent">
-                                            <li>
-                                                <div class="thumb">
-                                                    <img src="{{ asset('assets') }}/images/movie/tomato.png" alt="movie">
-                                                </div>
-                                                <span class="content">88%</span>
-                                            </li>
-                                            <li>
-                                                <div class="thumb">
-                                                    <img src="{{ asset('assets') }}/images/movie/cake.png" alt="movie">
-                                                </div>
-                                                <span class="content">88%</span>
-                                            </li>
-                                        </ul>
+                            @foreach ($movies as $item)
+                                <div class="item">
+                                    <div class="movie-grid">
+                                        <div class="movie-thumb c-thumb">
+                                            <a href="{{ route('detail') }}">
+                                                <img src="{{$item->image}}" alt="movie">
+                                            </a>
+                                        </div>
+                                        <div class="movie-content bg-one">
+                                            <h5 class="title m-0">
+                                                <a href="{{ route('detail') }}">{{\Illuminate\Support\Str::limit($item->title, 13)}}</a>
+                                            </h5>
+                                            <ul class="movie-rating-percent">
+                                                <li>
+                                                    <div class="thumb">
+                                                        <img src="{{ asset('assets') }}/images/movie/tomato.png"
+                                                            alt="movie">
+                                                    </div>
+                                                    <span class="content">88%</span>
+                                                </li>
+                                                <li>
+                                                    <div class="thumb">
+                                                        <img src="{{ asset('assets') }}/images/movie/cake.png"
+                                                            alt="movie">
+                                                    </div>
+                                                    <span class="content">88%</span>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item">
+                            @endforeach
+
+                            {{-- <div class="item">
                                 <div class="movie-grid">
                                     <div class="movie-thumb c-thumb">
                                         <a href="#0">
@@ -158,10 +163,10 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
-                    <div class="tab-item">
+                    {{-- <div class="tab-item">
                         <div class="owl-carousel owl-theme tab-slider">
                             <div class="item">
                                 <div class="movie-grid">
@@ -408,10 +413,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="block d-flex"><a class="btn btn-info" href="{{ route('movie-list') }}">all movie</a></div>
+                    </div> --}}
             </div>
+            <div class="block d-flex"><a class="btn btn-info" href="{{ route('movie-list') }}">all movie</a></div>
+        </div>
         </div>
     </section>
     <!-- ==========Movie-Section========== -->

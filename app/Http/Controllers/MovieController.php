@@ -13,14 +13,17 @@ class MovieController extends Controller
     public function index()
     {
         //
-        return view('client.index');
+        $movies = Movie::all();
+        // dd($movies);
+        return view('client.index', ['movies' => $movies]);
 
     }
 
     public function movieList()
     {
         //
-        return view('client.movie-list');
+        $movies = Movie::all();
+        return view('client.movie-list', ['movies' => $movies]);
     }
 
 
