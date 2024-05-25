@@ -14,7 +14,7 @@ class MovieController extends Controller
     {
         //
         $movies = Movie::all();
-        // dd($movies);
+        dd($movies);
         return view('client.index', ['movies' => $movies]);
 
     }
