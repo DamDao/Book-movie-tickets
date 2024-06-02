@@ -11,14 +11,17 @@ class RoomController extends Controller
     /**
      * Display a listing of the resource.
      */
-    const PATCH_VIEW = 'admin/room.' ;
-    public function index()
+    const PATCH_VIEW = 'admin/room.';
+    public function index(Request $request)
     {
         //
-        $data=Room::all();
+        $keyword = $request->input('keyword');
+       $data= Room::where('name', 'like', '%'.$keyword.'%')->get();
+
+        // $data = Room::all();
         // dd($data);
-    //    return view('admin.room.index',compact('data'));
-       return view(self::PATCH_VIEW . __FUNCTION__,compact('data'));
+        //    return view('admin.room.index',compact('data'));
+        return view(self::PATCH_VIEW . __FUNCTION__, compact('data','keyword'));
     }
 
     /**
@@ -27,8 +30,7 @@ class RoomController extends Controller
     public function create()
     {
         //
-       return view(self::PATCH_VIEW . __FUNCTION__);
-
+        return view(self::PATCH_VIEW . __FUNCTION__);
     }
 
     /**
@@ -39,7 +41,7 @@ class RoomController extends Controller
         //
         // dd($request->all());
         Room::create($request->all());
-        return redirect()->route('room.index')->with('msg','Thêm thành công');
+        return redirect()->route('room.index')->with('msg', 'Thêm thành công');
     }
 
     /**
@@ -56,6 +58,8 @@ class RoomController extends Controller
     public function edit(string $id)
     {
         //
+        $room = Room::find($id);
+        return view(self::PATCH_VIEW . __FUNCTION__, compact('room'));
     }
 
     /**
@@ -63,8 +67,13 @@ class RoomController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Find the room
+        $room = Room::find($id);
+
+        $room->update($request->all());
+        return back();
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -72,7 +81,8 @@ class RoomController extends Controller
     public function destroy(string $id)
     {
         //
-        // Room::destroy($id);
-        // return back()->with('msg','Xóa thành công');
+        $rom = Room::find($id);
+        $rom->delete();
+        return back()->with('msg', 'Xóa thành công');
     }
 }

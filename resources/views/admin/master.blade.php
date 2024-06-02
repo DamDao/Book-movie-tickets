@@ -40,7 +40,7 @@
     @include('admin.layouts.header')
 
     @include('admin.layouts.menu')
-
+    {{-- @yield('title') --}}
     @yield('main-content')
 
 
