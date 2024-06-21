@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +30,9 @@ Route::get('popcorn', [MovieController::class, 'popcorn'])->name('popcorn');
 Route::get('movie-checkout', [MovieController::class, 'checkout'])->name('checkout');
 Route::get('form-sign-up', [MovieController::class, 'FormSignUp'])->name('FormSignUp');
 Route::get('form-sign-in', [MovieController::class, 'FormSignIn'])->name('FormSignIn');
+
+Route::prefix('admin')->group(function(){
+    Route::get('/',[AdminController::class,'index'])->name('admin.index');
+    Route::resource('category', CategoryController::class);
+
+});
