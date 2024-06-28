@@ -18,4 +18,8 @@ class Room extends Model
     {
         return $this->hasMany(Seat::class);
     }
+    public function showTime()
+    {
+        return $this->belongsTo(ShowTime::class);
+    }
 }

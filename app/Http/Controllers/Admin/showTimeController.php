@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\ShowTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class showTimeController extends Controller
 {
@@ -13,6 +15,12 @@ class showTimeController extends Controller
     public function index()
     {
         //
+        // $data = ShowTime::with('room', 'seatStatus')->get();
+        $data = DB::table('showtimes')
+            ->leftJoin('rooms', 'showtimes.room_id', '=', 'rooms.id')
+            ->select('');
+        dd($data);
+        // return view('admin.showtime.index', compact('data'));
     }
 
     /**

@@ -19,4 +19,8 @@ class SeatStatus extends Model
     {
         return $this->belongsTo(Seat::class);
     }
+    public function showTime()
+    {
+        return $this->belongsTo(ShowTime::class);
+    }
 }
