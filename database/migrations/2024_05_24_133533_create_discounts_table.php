@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('code')->comment('mã giảm giá');
             $table->double('value')->comment('giá giảm');
             $table->string('discount_type')->comment('loại giảm giá: giảm theo % or giảm trực tiếp giá tiền');
+            $table->date('begin_date')->comment('ngày bắt đầu');
+
             $table->date('expiry_date')->comment('ngày hết hạn');
             $table->integer('usage_limit')->default(0)->comment('số lượng tối đa lần mà mã giảm giá có thể được sử dụng');
             $table->integer('status')->default(1)->comment('hoạt động và ko hoạt động'); 

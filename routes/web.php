@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,5 +35,7 @@ Route::get('form-sign-in', [MovieController::class, 'FormSignIn'])->name('FormSi
 Route::prefix('admin')->group(function(){
     Route::get('/',[AdminController::class,'index'])->name('admin.index');
     Route::resource('category', CategoryController::class);
+    Route::resource('discount', DiscountController::class);
+
 
 });
